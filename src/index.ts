@@ -58,7 +58,7 @@ export async function compileTailwind(
   const cssPath = resolve(options.base ?? process.cwd(), options.source ?? "src/styles.css");
   const compiler = await compile(await Bun.file(cssPath).text(), {
     base: dirname(cssPath),
-    onDependency() { },
+    onDependency() {},
   });
 
   const scanner = new Scanner({ sources: compiler.sources });
