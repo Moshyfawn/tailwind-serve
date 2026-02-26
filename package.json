@@ -1,6 +1,6 @@
 {
   "name": "@moshyfawn/tailwind-serve",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Compile and serve Tailwind CSS at server startup - no build pipeline needed",
   "keywords": [
     "bun",
