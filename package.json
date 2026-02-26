@@ -22,7 +22,7 @@
   "author": "moshyfawn <email@moshyfawn.dev>",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/moshyfawn/tailwind-serve.git"
+    "url": "git+https://github.com/Moshyfawn/tailwind-serve.git"
   },
   "files": [
     "dist"
