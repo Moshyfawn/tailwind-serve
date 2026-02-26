@@ -1,8 +1,22 @@
+/**
+ * Compile and serve Tailwind CSS at server startup - no build pipeline needed.
+ *
+ * @example
+ * ```ts
+ * import { initTailwind } from "@moshyfawn/tailwind-serve";
+ *
+ * const tw = await initTailwind();
+ * app.get("/styles.css", () => tw.response());
+ * ```
+ *
+ * @module
+ */
 import { resolve, dirname, extname } from "node:path";
 
 import { compile } from "@tailwindcss/node";
 import { Scanner } from "@tailwindcss/oxide";
 
+/** Options for configuring Tailwind CSS compilation. */
 export interface TailwindServeOptions {
   /** CSS file path relative to base (default: "src/styles.css") */
   source?: string;
@@ -10,9 +24,13 @@ export interface TailwindServeOptions {
   base?: string;
 }
 
+/** Result from a one-shot Tailwind compilation. */
 export interface TailwindCompileResult {
+  /** Compiled CSS string. */
   css: string;
+  /** Number of utility class candidates found in source files. */
   candidateCount: number;
+  /** Number of source files scanned. */
   fileCount: number;
 }
 
@@ -21,10 +39,15 @@ interface CompileTailwindResult extends TailwindCompileResult {
   scannedExtensions: Set<string>;
 }
 
+/** Live Tailwind instance with file watching and HTTP response helpers. */
 export interface TailwindServeInstance {
+  /** Current compiled CSS string. */
   readonly css: string;
+  /** Returns a `Response` with `text/css` content-type and cache headers. */
   response(): Response;
+  /** Force recompilation and return the new result. */
   rebuild(): Promise<TailwindCompileResult>;
+  /** Stop all file watchers. */
   close(): void;
 }
 
@@ -35,7 +58,7 @@ export async function compileTailwind(
   const cssPath = resolve(options.base ?? process.cwd(), options.source ?? "src/styles.css");
   const compiler = await compile(await Bun.file(cssPath).text(), {
     base: dirname(cssPath),
-    onDependency() {},
+    onDependency() { },
   });
 
   const scanner = new Scanner({ sources: compiler.sources });
