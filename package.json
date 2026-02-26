@@ -1,0 +1,66 @@
+{
+  "name": "@moshyfawn/tailwind-serve",
+  "version": "1.0.0",
+  "description": "Compile and serve Tailwind CSS at server startup - no build pipeline needed",
+  "keywords": [
+    "bun",
+    "compile",
+    "elysia",
+    "express",
+    "fastify",
+    "hono",
+    "jsx",
+    "no-build",
+    "runtime",
+    "serve",
+    "server",
+    "ssr",
+    "tailwind",
+    "tailwindcss"
+  ],
+  "license": "MIT",
+  "author": "moshyfawn <email@moshyfawn.dev>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/moshyfawn/tailwind-serve.git"
+  },
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.cts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown --watch",
+    "lint": "oxlint src/",
+    "format": "oxfmt .",
+    "format:check": "oxfmt --check .",
+    "prepublishOnly": "tsdown"
+  },
+  "dependencies": {
+    "@tailwindcss/node": "^4.0.0",
+    "@tailwindcss/oxide": "^4.0.0",
+    "tailwindcss": "^4.0.0"
+  },
+  "devDependencies": {
+    "@arethetypeswrong/core": "^0.18.2",
+    "bun-types": "latest",
+    "oxfmt": "^0.35.0",
+    "oxlint": "^1.50.0",
+    "publint": "^0.3.17",
+    "tsdown": "latest",
+    "unplugin-unused": "^0.5.7"
+  },
+  "engines": {
+    "bun": ">=1.0.0"
+  }
+}
