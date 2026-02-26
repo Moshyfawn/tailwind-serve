@@ -1,3 +1,4 @@
+import { readFile } from "node:fs/promises";
 /**
  * Compile and serve Tailwind CSS at server startup - no build pipeline needed.
  *
@@ -56,7 +57,7 @@ export async function compileTailwind(
   options: TailwindServeOptions = {},
 ): Promise<CompileTailwindResult> {
   const cssPath = resolve(options.base ?? process.cwd(), options.source ?? "src/styles.css");
-  const compiler = await compile(await Bun.file(cssPath).text(), {
+  const compiler = await compile(await readFile(cssPath, "utf-8"), {
     base: dirname(cssPath),
     onDependency() {},
   });
