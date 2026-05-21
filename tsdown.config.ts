@@ -8,8 +8,9 @@ export default defineConfig({
   clean: true,
   minify: true,
   treeshake: true,
-  publint: true,
-  attw: true,
+  publint: "ci-only",
+  attw: "ci-only",
+  failOnWarn: "ci-only",
   unused: {
     ignore: ["tailwindcss"],
   },
