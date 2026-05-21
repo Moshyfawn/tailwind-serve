@@ -66,6 +66,19 @@ One-shot compile without watching. Returns `{ css, candidateCount, fileCount }`.
 - **Production** (`NODE_ENV=production`): no watcher, serves with `public, max-age=31536000, immutable`
 - Source directories and file extensions are derived from `@tailwindcss/oxide` Scanner - no manual config needed
 
+## Contributing
+
+```bash
+bun install
+bun run build
+```
+
+When opening a PR with user-facing changes, add a [changeset](./.changeset/README.md):
+
+```bash
+bun run changeset
+```
+
 ## License
 
 MIT
