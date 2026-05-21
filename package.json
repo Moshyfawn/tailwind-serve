@@ -44,7 +44,8 @@
     "lint": "oxlint src/",
     "format": "oxfmt .",
     "format:check": "oxfmt --check .",
-    "prepublishOnly": "tsdown"
+    "changeset": "changeset",
+    "version": "changeset version && node scripts/sync-jsr-version.mjs"
   },
   "dependencies": {
     "@tailwindcss/node": "^4.0.0",
@@ -53,6 +54,8 @@
   },
   "devDependencies": {
     "@arethetypeswrong/core": "^0.18.2",
+    "@changesets/changelog-github": "^0.7.0",
+    "@changesets/cli": "^2.31.0",
     "bun-types": "latest",
     "oxfmt": "^0.35.0",
     "oxlint": "^1.50.0",
